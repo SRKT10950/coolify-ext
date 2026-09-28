@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Runtime and local storage
+data/
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE files
+.vscode/
+.idea/

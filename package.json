@@ -1,0 +1,28 @@
+{
+  "name": "coolify-port-domain-configurator",
+  "version": "1.0.0",
+  "description": "Docker web app to auto-configure Coolify application domains and internal free ports with zero host port exposure",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "coolify",
+    "docker",
+    "reverse-proxy",
+    "traefik",
+    "port-allocator",
+    "domain-management",
+    "security"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}

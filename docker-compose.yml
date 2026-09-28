@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  coolify-port-pilot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coolify-port-pilot:latest
+    container_name: coolify-port-pilot
+    restart: unless-stopped
+    ports:
+      # Optional: bind to host if accessing directly without Coolify proxy
+      - "4000:4000"
+    environment:
+      # Coolify instance connection (e.g., http://coolify:8000 when inside the coolify network)
+      - COOLIFY_API_URL=${COOLIFY_API_URL:-http://coolify:8000}
+      - COOLIFY_API_TOKEN=${COOLIFY_API_TOKEN:-}
+      # Dynamic port allocation range
+      - PORT_RANGE_START=${PORT_RANGE_START:-3100}
+      - PORT_RANGE_END=${PORT_RANGE_END:-9999}
+      # Automation options
+      - AUTO_REDEPLOY=${AUTO_REDEPLOY:-false}
+      - AUTO_SET_PORT_ENV=${AUTO_SET_PORT_ENV:-true}
+    volumes:
+      # Persistent storage for settings and port allocations registry
+      - ./data:/app/data
+    networks:
+      - default
+      - coolify
+
+networks:
+  default:
+  coolify:
+    external: true
+    name: coolify
